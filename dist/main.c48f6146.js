@@ -142,6 +142,24 @@ function linkAction() {
 navLink.forEach(function (n) {
   return n.addEventListener('click', linkAction);
 });
+
+/*==== SCROLL SECTIONS ACTIVE LINKS ====*/
+var sections = document.querySelectorAll("section[id]"); // all the sections ids
+
+function scrollActive() {
+  var scrollY = window.pageYOffset;
+  sections.forEach(function (current) {
+    var sectionHeight = current.offsetHeight;
+    sectionTop = current.offsetTop - 50;
+    sectionId = current.getAttribute("id");
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      document.querySelector(".nav__menu a[href*" + sectionId + "]").classList.add("active-link");
+    } else {
+      document.querySelector(".nav__menu a[href*=" + sectionId + "]").classList.remove("active-link");
+    }
+  });
+}
+window.addEventListener("scroll", scrollActive);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
